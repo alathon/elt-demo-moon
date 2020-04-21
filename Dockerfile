@@ -1,7 +1,9 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-RUN pip install alembic psycopg2
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-COPY ./app /app
-COPY alembic.ini /app/alembic.ini
-COPY alembic /app/alembic
+COPY ./app .
+COPY alembic.ini .
+COPY alembic ./alembic
